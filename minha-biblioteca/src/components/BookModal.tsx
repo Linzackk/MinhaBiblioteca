@@ -1,7 +1,6 @@
-import { BooksContext } from "../contexts/BooksContext";
 import { ManageBookButton } from "./ManageBookButton";
 import type { Book } from "../types/Book";
-import React, { useContext } from "react";
+import React from "react";
 
 interface BookModalProp {
     book: Book | null;

@@ -1,4 +1,5 @@
 import { Book } from "../types/Book";
+import { ManageBookButton } from "./ManageBookButton";
 
 interface BookCardProp {
     book: Book;
@@ -8,13 +9,18 @@ interface BookCardProp {
 export function BookCard({ book, onSelect }: BookCardProp) {
     return (
         <div 
-            style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}
-            onClick={() => onSelect(book)}
+            style={{display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center"}}        
         >
-            <img src={book.capa} alt="" />
-            <p>{book.titulo}</p>
-            <p>{book.status}</p>
-            <p>{book.nota}</p>
+            <div 
+                onClick={() => onSelect(book)}
+                style={{display: "flex", justifyContent: "center", alignItems: "center"}}   
+            >
+                <img src={book.capa} alt="" />
+                <p>{book.titulo}</p>
+                <p>{book.status}</p>
+                <p>{book.nota}</p>
+            </div>
+            <ManageBookButton book={book} />
         </div>
     )
 }
