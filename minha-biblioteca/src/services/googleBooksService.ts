@@ -31,5 +31,6 @@ export async function searchBooks(query: string) {
             nota: 0,
         }
     })
+    return books;
 }
 
