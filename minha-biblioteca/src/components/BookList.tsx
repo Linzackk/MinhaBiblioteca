@@ -3,13 +3,18 @@ import { BookCard } from "./BookCard";
 
 interface BookListProp {
     books: Book[]
+    onSelect: (book: Book) => void;
 }
 
-export function BookList({ books }: BookListProp) {
+export function BookList({ books, onSelect }: BookListProp) {
     return (
         <div>
             {books.map((book) => (
-                <div key={book.id}><BookCard book={book}/></div>
+                    <BookCard 
+                        key={book.id} 
+                        book={book}
+                        onSelect={onSelect}
+                    />
             ))}
         </div>
     )

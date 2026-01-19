@@ -3,8 +3,10 @@ import { searchBooks } from "../services/googleBooksService";
 import type { Book } from "../types/Book";
 import { SearchBar } from "../components/SearchBar";
 import { BookList } from "../components/BookList";
+import { BookModal } from "../components/BookModal";
 
 export function Search() {
+    const [selectedBook, setSelectedBook] = useState<Book | null>(null);
     const [query, setQuery] = useState('');
     const [results, setResults] = useState<Book[]>([]);
 
@@ -20,7 +22,8 @@ export function Search() {
         <div>
             <h1>Buscar Livros</h1>
             <SearchBar query={query} setQuery={setQuery} onSearch={handleSearch}/>
-            <BookList books={results}/>
+            <BookList books={results} onSelect={setSelectedBook}/>
+            <BookModal book={selectedBook} onClose={() => setSelectedBook(null)}/>
         </div>
     )
 }

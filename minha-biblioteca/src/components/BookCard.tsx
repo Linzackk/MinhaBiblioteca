@@ -2,11 +2,15 @@ import { Book } from "../types/Book";
 
 interface BookCardProp {
     book: Book;
+    onSelect: (book: Book) => void;
 }
 
-export function BookCard({ book }: BookCardProp) {
+export function BookCard({ book, onSelect }: BookCardProp) {
     return (
-        <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+        <div 
+            style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}
+            onClick={() => onSelect(book)}
+        >
             <img src={book.capa} alt="" />
             <p>{book.titulo}</p>
             <p>{book.status}</p>
