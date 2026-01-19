@@ -1,7 +1,5 @@
-import { useContext } from "react";
 import type { Book } from "../types/Book";
 import { BookCard } from "./BookCard";
-import { BooksContext } from "../contexts/BooksContext";
 
 interface BookListProp {
     books: Book[]
@@ -9,7 +7,6 @@ interface BookListProp {
 }
 
 export function BookList({ books, onSelect }: BookListProp) {
-    const {addBook} = useContext(BooksContext)
     return (
         <div>
             {books.map((book) => (
@@ -17,7 +14,6 @@ export function BookList({ books, onSelect }: BookListProp) {
                         key={book.id} 
                         book={book}
                         onSelect={onSelect}
-                        addBook={addBook}
                     />
             ))}
         </div>

@@ -1,5 +1,7 @@
+import { BooksContext } from "../contexts/BooksContext";
+import { ManageBookButton } from "./ManageBookButton";
 import type { Book } from "../types/Book";
-import React from "react";
+import React, { useContext } from "react";
 
 interface BookModalProp {
     book: Book | null;
@@ -7,7 +9,7 @@ interface BookModalProp {
 }
 
 export function BookModal({ book, onClose}: BookModalProp) {
-    if (!book) return null
+    if (!book) return null;
 
     return (
         <div
@@ -44,6 +46,7 @@ export function BookModal({ book, onClose}: BookModalProp) {
                 <p><strong>Páginas:</strong> {book.paginasLidas}/{book.paginasTotais}</p>
                 <p><strong>Nota:</strong> {book.nota}/5</p>
                 <p><strong>Descrição:</strong> {book.sinopse}</p>
+                <ManageBookButton book={book} />
             </div>
         </div>
     )
