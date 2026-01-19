@@ -6,6 +6,7 @@ export interface Book {
     titulo: string,
     autor: string[],
     generos: string[],
+    sinopse: string,
     paginasLidas: number,
     paginasTotais: number,
     status: BookStatus,
