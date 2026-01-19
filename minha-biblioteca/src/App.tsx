@@ -8,12 +8,11 @@ function App() {
         <nav>
           <Link to="/">Home</Link> |
           <Link to="/search">Procurar</Link>
-
+        </nav>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/search" element={<Search />} />
-          </Routes>
-        </nav>
+          </Routes>      
       </div>
   )
 }
