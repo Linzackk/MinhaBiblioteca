@@ -1,6 +1,10 @@
 import { Book } from "../types/Book";
-import { formatTitle } from "../util/formatTitle";
 import { ManageBookButton } from "./ManageBookButton";
+import { BookImg } from "./BookImg";
+import { BookTitle } from "./BookTitle";
+import { BookPages } from "./BookPages";
+import { BookUserInfo } from "./BookUserInfo";
+import styles from "./BookCard.module.css"
 
 interface BookCardProp {
     book: Book;
@@ -8,53 +12,19 @@ interface BookCardProp {
 }
 
 export function BookCard({ book, onSelect }: BookCardProp) {
+    // paginas lidas tem um valor pego da lista do usuário
     return (
-        <div
-            style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                padding: "8px",
-                border: "1px solid #ccc",
-                borderRadius: "4px",
-                marginBottom: "8px",
-            }}
-        >
-            {/* Bloco 1: Imagem + Título */}
+        <div className={styles.BookContainer}>
             <div 
                 onClick={() => onSelect(book)}
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "12px", // espaço entre imagem e título
-                    cursor: "pointer",
-                    minWidth: "200px" // garante que não fique apertado
-                }}
+                className={styles.OpenBookInfo}
             >
-                <img 
-                    src={book.capa} 
-                    alt={book.titulo} 
-                    style={{ width: "50px", height: "70px", objectFit: "cover" }} 
-                />
-                <p
-                    style={{ fontFamily: "monospace", whiteSpace: "pre" }}          
-                >{formatTitle(book.titulo)}</p>
+                <BookImg capa={book.capa} titulo={book.titulo} />
+                <BookTitle titulo={book.titulo} />
             </div>
-
-            {/* Bloco 2: Status */}
-            <div style={{ minWidth: "100px", textAlign: "center" }}>
-                <p>{book.status}</p>
-            </div>
-
-            {/* Bloco 3: Nota */}
-            <div style={{ minWidth: "50px", textAlign: "center" }}>
-                <p>{book.nota}</p>
-            </div>
-
-            {/* Bloco 4: Botão */}
-            <div>
-                <ManageBookButton book={book} />
-            </div>
+            <BookPages paginasLidas={book.paginasLidas} paginasTotais={book.paginasTotais} />
+            <BookUserInfo id={book.id} nota={book.nota} status={book.status}/>
+            <ManageBookButton book={book} />
         </div>
     )
 }

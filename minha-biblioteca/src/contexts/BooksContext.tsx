@@ -18,7 +18,11 @@ export const BooksContext = createContext<BooksContextData>(
 )
 
 export function BooksProvider({ children }: BooksProviderProp) {
-    const [books, setBooks] = useState<Book[]>([]);
+    // const [books, setBooks] = useState<Book[]>([]);
+    const [books, setBooks] = useState<Book[]>(() => {
+        const data = localStorage.getItem('books');
+        return data ? JSON.parse(data) : [];
+    })
 
     const addBook = (book: Book) => {
         setBooks((prev) => [...prev, book]);
@@ -47,11 +51,6 @@ export function BooksProvider({ children }: BooksProviderProp) {
             )
         )
     }
-
-    useEffect(() => {
-        const data = localStorage.getItem('books');
-        if (data) setBooks(JSON.parse(data));
-    }, [])
 
     useEffect(() => {
         localStorage.setItem('books', JSON.stringify(books))
