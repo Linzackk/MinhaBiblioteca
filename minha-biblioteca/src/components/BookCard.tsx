@@ -22,7 +22,7 @@ export function BookCard({ book, onSelect }: BookCardProp) {
                 <BookImg capa={book.capa} titulo={book.titulo} />
                 <BookTitle titulo={book.titulo} />
             </div>
-            <BookPages paginasLidas={book.paginasLidas} paginasTotais={book.paginasTotais} />
+            <BookPages paginasLidas={book.paginasLidas} paginasTotais={book.paginasTotais} id={book.id} />
             <BookUserInfo id={book.id} nota={book.nota} status={book.status}/>
             <ManageBookButton book={book} />
         </div>

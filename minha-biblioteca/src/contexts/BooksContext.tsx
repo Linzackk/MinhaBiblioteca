@@ -7,6 +7,7 @@ interface BooksContextData {
     removeBook: (id: string) => void;
     updateProgress: (id: string, pagesRead: number) => void;
     updateStatus: (id: string, status: BookStatus) => void;
+    updateScore: (id: string, score: number) => void;
 }
 
 interface BooksProviderProp {
@@ -32,11 +33,12 @@ export function BooksProvider({ children }: BooksProviderProp) {
         setBooks((prev) => prev.filter((book) => book.id !== id))
     }
 
-    const updateProgress = (id: string, pagesRead: number) => {
+    const updateProgress = (id: string, paginasLidas: number) => {
+        console.log(books)
         setBooks((prev) => 
             prev.map((book) =>
                 book.id === id
-                    ? { ...book, pagesRead}
+                    ? { ...book, paginasLidas}
                     : book
             )
         )
@@ -52,6 +54,16 @@ export function BooksProvider({ children }: BooksProviderProp) {
         )
     }
 
+    const updateScore = (id: string, nota: number) => {
+        setBooks((prev) =>
+            prev.map((book) =>
+            book.id === id
+                ? { ...book, nota}
+                : book
+            )    
+        )
+    }
+
     useEffect(() => {
         localStorage.setItem('books', JSON.stringify(books))
     }, [books])
@@ -62,7 +74,8 @@ export function BooksProvider({ children }: BooksProviderProp) {
             addBook, 
             removeBook, 
             updateProgress, 
-            updateStatus 
+            updateStatus,
+            updateScore
             }}
         >
             {children}
