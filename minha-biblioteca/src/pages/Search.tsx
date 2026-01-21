@@ -1,16 +1,22 @@
 import { useContext, useState, useEffect } from "react";
 import { searchBooks } from "../services/googleBooksService";
 import type { Book } from "../types/Book";
-import { SearchBar } from "../components/SearchBar";
+import { useLocation } from "react-router-dom";
 import { BookList } from "../components/BookList";
 import { BookModal } from "../components/BookModal";
 import { BooksContext } from "../contexts/BooksContext";
+
+function useQuery() {
+        return new URLSearchParams(useLocation().search);
+    }
 
 export function Search() {
     const [selectedBook, setSelectedBook] = useState<Book | null>(null);
     const [query, setQuery] = useState('');
     const [results, setResults] = useState<Book[]>([]);
     const {books} = useContext(BooksContext);
+
+    const locationQuery = useQuery().get('q') || '';
 
     const handleSearch = async () => {
         if (!query.trim()) return;
@@ -32,6 +38,13 @@ export function Search() {
 
         setResults(merged);
     }
+
+    useEffect(() => {
+        if (locationQuery) {
+            setQuery(locationQuery);
+            handleSearch();
+        }
+    }, [locationQuery])
 
     useEffect(() => {
         if (results.length === 0) return;
@@ -56,7 +69,6 @@ export function Search() {
     return (
         <div>
             <h1>Buscar Livros</h1>
-            <SearchBar query={query} setQuery={setQuery} onSearch={handleSearch}/>
             <BookList books={results} onSelect={setSelectedBook}/>
             <BookModal book={selectedBook} onClose={() => setSelectedBook(null)}/>
         </div>
