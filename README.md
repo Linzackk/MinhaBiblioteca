@@ -1,6 +1,7 @@
 # MinhaBiblioteca
 
 MinhaBiblioteca é uma plataforma desenvolvida em **React com Vite** para que usuários possam armazenar, gerenciar e acompanhar informações sobre livros. O projeto possui um design simples e funcional, focado na experiência do usuário.
+
 **Demo Online:** [Acesse aqui na Vercel](https://minha-biblioteca-wine.vercel.app)
 
 ---
