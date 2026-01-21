@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import './Nav.css';
+import bookIcon from '../images/book-icon.png';
 
 export function Nav() {
     const [query, setQuery] = useState('');
@@ -16,7 +17,7 @@ export function Nav() {
         <nav className="nav-container">
             <Link to="/" className="nav-books-link">
                 <img 
-                    src="../images/book-icon.png"
+                    src={bookIcon}
                     alt="Meus Livros"
                     className="nav-books-img"
                 />
@@ -25,7 +26,7 @@ export function Nav() {
             <form className="nav-search-form" onSubmit={handleSearch}>
                 <input 
                     type="text" 
-                    placeholder="Psequisar livros..."    
+                    placeholder="Pesquisar livros..."    
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                 />

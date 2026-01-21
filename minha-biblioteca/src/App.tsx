@@ -1,14 +1,12 @@
 import { Search } from "./pages/Search";
 import { Home } from "./pages/Home";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import { Nav } from "./components/Nav";
 
 function App() {
   return (
       <div>
-        <nav>
-          <Link to="/">Home</Link> |
-          <Link to="/search">Procurar</Link>
-        </nav>
+        <Nav />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/search" element={<Search />} />

@@ -6,45 +6,39 @@ import { BookList } from "../components/BookList";
 import { BookModal } from "../components/BookModal";
 import { BooksContext } from "../contexts/BooksContext";
 
-function useQuery() {
-        return new URLSearchParams(useLocation().search);
-    }
-
 export function Search() {
     const [selectedBook, setSelectedBook] = useState<Book | null>(null);
     const [query, setQuery] = useState('');
     const [results, setResults] = useState<Book[]>([]);
     const {books} = useContext(BooksContext);
+    const location = useLocation();
 
-    const locationQuery = useQuery().get('q') || '';
+    const handleSearch = async (searchQuery?: string) => {
+        const q = searchQuery ?? query;
+        if (!q.trim()) return;
 
-    const handleSearch = async () => {
-        if (!query.trim()) return;
-
-        const booksResults = await searchBooks(query);
+        const booksResults = await searchBooks(q);
 
         const merged = booksResults.map(apiBook => {
-            const userBook = books.find(user => user.id === apiBook.id);
-
-            if (!userBook) return apiBook;
-
-            return {
-                ...apiBook,
-                paginasLidas: userBook.paginasLidas,
-                status: userBook.status,
-                nota: userBook.nota,
-            };
-        });
+        const userBook = books.find(user => user.id === apiBook.id);
+        if (!userBook) return apiBook;
+        return {
+            ...apiBook,
+            paginasLidas: userBook.paginasLidas,
+            status: userBook.status,
+            nota: userBook.nota,
+        };
+    });
 
         setResults(merged);
     }
 
     useEffect(() => {
-        if (locationQuery) {
-            setQuery(locationQuery);
-            handleSearch();
-        }
-    }, [locationQuery])
+        const params = new URLSearchParams(location.search);
+        const q = params.get('q') || '';
+        setQuery(q);
+        if (q) handleSearch(q);
+    }, [location.search, books]);
 
     useEffect(() => {
         if (results.length === 0) return;
