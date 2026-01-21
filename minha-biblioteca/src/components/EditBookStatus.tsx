@@ -21,10 +21,8 @@ export function EditBookStatus({ status, id }: EditBookStatusProp) {
     }
 
     function finishEdit() {
-        
-
         setEditing(false);
-        updateStatus(id, tempStatus)
+        updateStatus(id, tempStatus);
     }
 
     return (
@@ -34,7 +32,7 @@ export function EditBookStatus({ status, id }: EditBookStatusProp) {
                     <label>Status:</label>
                     <select 
                         value={tempStatus} 
-                        onChange={(e) => setTempStatus(e.target.value as BookStatus)}
+                        onChange={(e) => { setTempStatus(e.target.value as BookStatus) }}
                         onBlur={finishEdit}
                     >
                         <option value={BookStatusValue.LIDO}>{BookStatusText.LIDO}</option>
