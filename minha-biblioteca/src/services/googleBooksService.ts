@@ -15,9 +15,21 @@ export async function searchBooks(query: string) {
 
     if (!data.items) return [];
 
-    const books: Book[] = data.items.map((item: any) => {
-        const info = item.volumeInfo
+    const getUserBooks = () => {
+        const data = localStorage.getItem('books');
+        return data ? JSON.parse(data) : [];
+    }
+    const userBooks: Book[] = getUserBooks()
 
+    function getBookUserStatus(id: string) {
+        const book = userBooks.find((book) => book.id === id)
+        return book ? book.status : null;
+    }
+
+
+    const booksSearch: Book[] = data.items.map((item: any) => {
+        
+        const info = item.volumeInfo
         return {
             id: item.id,
             capa: info.imageLinks?.thumbnail ?? '',
@@ -27,10 +39,10 @@ export async function searchBooks(query: string) {
             sinopse: info.description ?? '',
             paginasLidas: 0,
             paginasTotais: info.pageCount ?? 0,
-            status: "QUERO_LER",
+            status: getBookUserStatus(item.id) || "QUERO_LER",
             nota: 0,
         }
     })
-    return books;
+    return booksSearch;
 }
 
