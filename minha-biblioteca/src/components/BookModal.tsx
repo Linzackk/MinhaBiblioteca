@@ -1,6 +1,6 @@
 import { ManageBookButton } from "./ManageBookButton";
 import type { Book } from "../types/Book";
-import React from "react";
+import styles from "./BookModal.module.css"
 
 interface BookModalProp {
     book: Book | null;
@@ -12,28 +12,11 @@ export function BookModal({ book, onClose}: BookModalProp) {
 
     return (
         <div
-            style={{
-                position: 'fixed',
-                top: 0, left: 0, right: 0, bottom: 0,
-                backgroundColor: 'rgba(0,0,0,0.5)',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                zIndex: 1000
-                } as React.CSSProperties
-            }
+            className={styles.BookModalContainer}
             onClick={onClose}
         >
             <div
-                style={{
-                backgroundColor: 'white',
-                padding: '20px',
-                borderRadius: '10px',
-                width: '400px',
-                maxHeight: '80%',
-                overflowY: 'auto'
-                } as React.CSSProperties
-                }
+                className={styles.CloseBookModal}
                 onClick={(e) => e.stopPropagation()}
             >
                 <button onClick={onClose} style={{ float: 'right'}}>X</button>
