@@ -29,7 +29,6 @@ export function EditBookStatus({ status, id }: EditBookStatusProp) {
         <span>
             {editing ? (
                 <>
-                    <label>Status:</label>
                     <select 
                         value={tempStatus} 
                         onChange={(e) => { setTempStatus(e.target.value as BookStatus) }}
