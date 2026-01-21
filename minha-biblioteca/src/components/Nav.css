@@ -1,0 +1,42 @@
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f2f2; 
+  padding: 10px 20px;
+  position: relative;
+}
+
+.nav-books-link {
+  position: absolute;
+  left: 20px;
+}
+
+.nav-books-img {
+  height: 40px;
+  cursor: pointer;
+}
+
+.nav-search-form {
+  display: flex;
+  flex: 1;
+  max-width: 500px;
+  justify-content: center;
+}
+
+.nav-search-form input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 6px 0 0 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.nav-search-form button {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-left: none;
+  border-radius: 0 6px 6px 0;
+  background-color: #fff;
+  cursor: pointer;
+}
