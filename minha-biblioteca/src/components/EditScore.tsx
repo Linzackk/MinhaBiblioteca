@@ -40,10 +40,12 @@ export function EditScore({score, id}: EditScoreProp) {
                     onKeyDown={(e) => e.key === "Enter" && finishEdit()}
                 />
             ) : (
-                <p onClick={startEdit}>
+                <span onClick={startEdit}>
                     {score}
-                </p>
+                </span>
             )}
+            <span>/</span>
+            <span>{maxScore}</span>
         </>
     )
 }
