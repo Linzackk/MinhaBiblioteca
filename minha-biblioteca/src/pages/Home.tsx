@@ -3,6 +3,7 @@ import type { Book } from "../types/Book";
 import { BookList } from "../components/BookList";
 import { BookModal } from "../components/BookModal";
 import { BooksContext } from "../contexts/BooksContext";
+import { PageTitle } from "../components/PageTitle";
 
 
 export function Home() {
@@ -11,7 +12,7 @@ export function Home() {
 
     return (
         <div>
-            <h1>Livros Salvos</h1>
+            <PageTitle title="Livros Salvos"/>
             <BookList books={books} onSelect={setSelectedBook}/>
             <BookModal book={selectedBook} onClose={() => setSelectedBook(null)}/>
         </div>

@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { BookList } from "../components/BookList";
 import { BookModal } from "../components/BookModal";
 import { BooksContext } from "../contexts/BooksContext";
+import { PageTitle } from "../components/PageTitle";
 
 export function Search() {
     const [selectedBook, setSelectedBook] = useState<Book | null>(null);
@@ -62,7 +63,7 @@ export function Search() {
 
     return (
         <div>
-            <h1>Buscar Livros</h1>
+            <PageTitle title="Resultados"/>
             <BookList books={results} onSelect={setSelectedBook}/>
             <BookModal book={selectedBook} onClose={() => setSelectedBook(null)}/>
         </div>
