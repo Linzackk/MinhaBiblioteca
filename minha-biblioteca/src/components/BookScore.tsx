@@ -1,11 +1,17 @@
+import { EditScore } from "./EditScore";
+
 interface BookScoreProp {
     nota: number;
+    id: string;
 }
 
-export function BookScore({nota}: BookScoreProp) {
+export function BookScore({nota, id}: BookScoreProp) {
     return ( 
         <div style={{ minWidth: "50px", textAlign: "center" }}>
-            <p>{nota}</p>
+            <EditScore 
+                id={id}
+                score={nota}
+            />
         </div>
     )
 }
