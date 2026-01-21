@@ -1,15 +1,15 @@
 import { BookStatus } from "../types/Book";
-import { BookStatusText } from "../types/Status";
+import { EditBookStatus } from "./EditBookStatus";
 
 interface BookStatusProp {
     status: BookStatus;
+    id: string;
 }
 
-export function BookStatusComponent({status}: BookStatusProp) {
-    const statusText = BookStatusText[status]
+export function BookStatusComponent({status, id}: BookStatusProp) {
     return (
         <div style={{ minWidth: "100px", textAlign: "center" }}>
-            <p>{statusText}</p>
+            <EditBookStatus id={id} status={status}/>
         </div>
     )
 }

@@ -18,8 +18,8 @@ export function BookUserInfo({status, nota, id}: BookUserInfoProp) {
         <>
             {bookInUserList ? (
                 <>
-                <BookStatusComponent status={status} />
-                <BookScore nota={nota} />
+                    <BookStatusComponent status={status} id={id} />
+                    <BookScore nota={nota} id={id}/>
                 </>
             ) : (
                 <>

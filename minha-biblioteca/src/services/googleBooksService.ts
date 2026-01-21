@@ -15,9 +15,9 @@ export async function searchBooks(query: string) {
 
     if (!data.items) return [];
 
-    const books: Book[] = data.items.map((item: any) => {
+    const booksSearch: Book[] = data.items.map((item: any) => {
+        
         const info = item.volumeInfo
-
         return {
             id: item.id,
             capa: info.imageLinks?.thumbnail ?? '',
@@ -31,6 +31,6 @@ export async function searchBooks(query: string) {
             nota: 0,
         }
     })
-    return books;
+    return booksSearch;
 }
 
