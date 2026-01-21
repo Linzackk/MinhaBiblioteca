@@ -101,7 +101,7 @@ npm run dev
 
 ```
 
-O site estará disponível no endereço exibido no terminal (geralmente http://localhost:5173).
+O site estará disponível no endereço exibido no terminal (padrão http://localhost:5173).
 
 ---
 
